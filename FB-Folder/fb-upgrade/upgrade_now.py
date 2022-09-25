@@ -38,8 +38,8 @@ def DoUpgrade(dict2):
 	else:
 		if dict2[u'FarmboxFirmwareUpgrade'] == True:
 			os.system("cd /home/michael/FB-Folder")
-			os.system("git clone https://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@github.com/Kotin-for-win/" + dict2[u'gh-addr'])
-			#os.system("rm farmbox")
+			os.system("git clone https://" + dict2[u'gh-doormat'] + "@github.com/" + dict2[u'gh-user'] + "/" + dict2[u'gh-addr'])
+			os.system("rm farmbox")
 			os.system("mv farmbox-new farmbox")
 			os.system("systemctl restart fb-commander")
 		os.system("apt update")
