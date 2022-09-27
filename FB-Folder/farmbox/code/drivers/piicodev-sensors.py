@@ -25,7 +25,7 @@ while True:
     pres_hPa = presPa / 100 # convert air pressurr Pascals -> hPa (or mbar, if you prefer)
     with open(r'/home/michael/FB-Folder/farmbox/data/bar.txt', 'w') as bar_write:
     	bar_write.write(str(pres_hPa))
-    	temp_write.close()
+    	bar_write.close()
     with open(r"/home/michael/FB-Folder/farmbox/data/temp.txt") as temp_write:
     	temp_write.write(str(tempC))
     	temp_write.close()
