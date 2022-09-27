@@ -15,9 +15,13 @@
 # along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 import firebase_admin
+import os
+import time
+import serial
 from firebase_admin import credentials
 from firebase_admin import firestore
 
+#File manager library to ensure locks aren't kept
 class OpenFiles():
     def __init__(self):
         self.files = []
@@ -29,6 +33,7 @@ class OpenFiles():
         list(map(lambda f: f.close(), self.files))
 files = OpenFiles()
 
+# Handle syncing data with Firestore
 cred = credentials.Certificate('/home/michael/FB-Folder/farmbox/serviceAccount.json')
 firebase_admin.initialize_app(cred)
 
@@ -58,3 +63,10 @@ doc_ref.set({
    u'ai-health': sickness
 }, merge=True)
 files.close()
+
+#serial port communication for Wio
+serialPort = "/dev/ttyACM0" #this is the serial port the wio always gets assigned, we tested!
+baudRate = 115200
+ser = serial.Serial(serialPort, baudRate, timeout=0.5)
+serRipe = ser.write(str.encode(ripeness))
+serSick = ser.write(str.encode(sickness))
