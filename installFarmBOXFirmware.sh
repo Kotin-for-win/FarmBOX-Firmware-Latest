@@ -19,7 +19,8 @@ if [ $(whoami) == "root" ]; then
 	mkdir /home/michael/FB-Folder/streams
 	mkdir /home/michael/FB-Folder/streams/class0
 	mkdir /home/michael/FB-Folder/streams/class1
-	cp $2 /home/michael/FB-Folder/FB-Folder
+	pathToSA=$(find /media/* -name "serviceAccount.json"
+	cp $pathToSA /home/michael/FB-Folder/FB-Folder
 	echo "Stage [3/9]: Installing APT Packages"
 	apt -y install python3 python3-dev python3-pip build-essential libssl-dev libffi-dev python-dev python3-venv nano
 	apt -y install raspi-config lua5.1 libatopology2 libfftw3-single3 libsamplerate0 alsa-utils
